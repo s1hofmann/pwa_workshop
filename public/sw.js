@@ -3,18 +3,6 @@ const CURRENT_CACHES = {
     dynamic: 'dynamic-cache-v1'
 };
 
-const NON_CACHE_METHODS = [
-    'POST',
-    'PUT',
-    'DELETE'
-];
-
-const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
-
-const isImageURL = (url) => /https:\/\/imgs.xkcd.com\/comics/g.test(url);
-const isDataURL = (url) => /https:\/\/xkcd.now.sh/g.test(url);
-const proxyUrl = (url) => PROXY_URL + url;
-
 self.oninstall = (event) => {
     console.log('[Service Worker] Installing service worker...', event);
     event.waitUntil(
@@ -50,49 +38,9 @@ self.oninstall = (event) => {
 };
 
 self.onactivate = (event) => {
-    console.log('[Service Worker] Activating service worker...', event);
-
-    const active_caches = Object.keys(CURRENT_CACHES).map(key => (CURRENT_CACHES[key]));
-
-    event.waitUntil(caches.keys()
-        .then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cacheName => {
-                    if (active_caches.indexOf(cacheName) < 0) {
-                        console.log("Purging outdated cache:", cacheName);
-                        return caches.delete(cacheName);
-                    }
-                })
-            )
-        })
-    );
-
-    return self.clients.claim();
+    // TODO Implement me
 };
 
 self.onfetch = (event) => {
-    console.log(event);
-    event.respondWith(
-        caches.match(event.request)
-            .then(cachedResonse => {
-                if (cachedResonse) {
-                    return cachedResonse;
-                } else {
-                    const target = isImageURL(event.request.url) ? proxyUrl(event.request.url) : event.request.url;
-                    const fetchedResponse = fetch(target);
-                    return fetchedResponse
-                        .then(resp => {
-                            console.log(resp);
-                            if (NON_CACHE_METHODS.indexOf(event.request.method) < 0) {
-                                const clonedResponse = resp.clone();
-                                caches.open(CURRENT_CACHES.dynamic)
-                                    .then(cache => {
-                                        cache.put(event.request, clonedResponse);
-                                    });
-                            }
-                            return resp
-                        });
-                }
-            })
-    );
+    // TODO Implement me
 };
