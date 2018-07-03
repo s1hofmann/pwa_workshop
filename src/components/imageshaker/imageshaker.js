@@ -63,7 +63,10 @@ export default class ImageShaker extends React.Component {
     };
 
     fetchPayload = (url) => {
-        // TODO Implement me
+        return fetch(url)
+            .then(payload => payload.json())
+            .then(body => body)
+            .catch(err => console.log(err));
     };
 
     prev = () => {

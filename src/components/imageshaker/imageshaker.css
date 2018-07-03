@@ -2,6 +2,42 @@
     --image-width: 280px;
 }
 
+@media screen and (min-width : 360px) {
+    :root {
+        --image-width: 320px;
+    }
+}
+
+@media screen and (min-width : 375px) {
+    :root {
+        --image-width: 335px;
+    }
+}
+
+@media screen and (min-width : 411px) {
+    :root {
+        --image-width: 371px;
+    }
+}
+
+@media screen and (min-width : 414px) {
+    :root {
+        --image-width: 374px;
+    }
+}
+
+@media screen and (min-width : 768px) {
+    :root {
+        --image-width: 728px;
+    }
+}
+
+@media screen and (min-width : 1024px) {
+    :root {
+        --image-width: fit-content;
+    }
+}
+
 .comic {
     width: var(--image-width);
 }
@@ -21,6 +57,12 @@
     padding-bottom: 1.5em;
 }
 
+@media screen and (min-width : 768px) {
+    #comicName {
+        font: 1.5em "Century Gothic", Futura, sans-serif;
+    }
+}
+
 .buttongroup {
     width: fit-content;
     margin-left: auto;
@@ -38,3 +80,10 @@
     margin-right: 5px;
     margin-bottom: 1.5em;
 }
+
+@media screen and (min-width : 768px) {
+    .buttongroup button {
+        font: 1.5em "Century Gothic", Futura, sans-serif;
+    }
+}
+
