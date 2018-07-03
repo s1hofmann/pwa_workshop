@@ -38,7 +38,24 @@ self.oninstall = (event) => {
 };
 
 self.onactivate = (event) => {
-    // TODO Implement me
+    console.log('[Service Worker] Activating service worker...', event);
+
+    const active_caches = Object.keys(CURRENT_CACHES).map(key => (CURRENT_CACHES[key]));
+
+    event.waitUntil(caches.keys()
+        .then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (active_caches.indexOf(cacheName) < 0) {
+                        console.log("Purging outdated cache:", cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            )
+        })
+    );
+
+    return self.clients.claim();
 };
 
 self.onfetch = (event) => {
