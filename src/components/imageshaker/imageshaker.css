@@ -1,0 +1,40 @@
+:root {
+    --image-width: 280px;
+}
+
+.comic {
+    width: var(--image-width);
+}
+
+#comicContainer {
+    padding-top: 1.5em;
+}
+
+#imageContainer {
+    width: var(--image-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#comicName {
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+}
+
+.buttongroup {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clearer { clear: both; }
+
+.buttongroup button {
+    padding-top: 1.5em;
+    background: white;
+    font: 1em "Century Gothic", Futura, sans-serif;
+    border: 2px solid black;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 1.5em;
+}
